@@ -1,22 +1,22 @@
 # AOP
 ### apt di 依赖注入 demo
-1. 创建两个Java Library
+1. 创建两个Java Library 
 	apt-annotation : 存放注解类
 	apt-compiler ： 存放AnnotationProsessor，处理注解类
 
-2. 创建Android Library
+2. 创建Android Library 
 	apt-api : 创建基础类，主要用于处理生成类，可选。
 
-3. 注解类型RetentionPolicy
+3. 注解类型RetentionPolicy 
 	SOURCE(源代码), CLASS(编译), RUNTIME(运行，范围最大，会同时包含3个过程)
 
-4. 注解位置Target
+4. 注解位置Target 
 	TYPE,FIELD,METHOD,PARAMETER,CONSTRUCTOR,LOCAL_VARIABLE,ANNOTATION_TYPE, PACKAGE,TYPE_PARAMETER,TYPE_USE;
 
-5. 使用Android注解
+5. 使用Android注解 
 	依赖’com.android.support:support-annotations:28.0.0’到apt-annotation库中。
 
-6. apt-compiler 依赖
+6. apt-compiler 依赖 
     ```groovy
     implementation 'com.google.auto.service:auto-service:1.0-rc7'
     annotationProcessor 'com.google.auto.service:auto-service:1.0-rc7'
@@ -31,7 +31,7 @@
    * dagger进行依赖注入
     
 
-7. AndroidAOPDemo中apt例子讲解
+7. AndroidAOPDemo中apt例子讲解 
 * 这是一个依赖注入的例子，参考了dagger
 * 支持@Inject注解构造方法，然后解析所有@Inject，生成XXX_Provider类
 * 支持@DIComponent自定义注解，添加在interface上，生成Component类，并在构造方法中自动生成依赖关系构造序列。
