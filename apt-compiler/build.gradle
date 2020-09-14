@@ -1,0 +1,19 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation project(':apt-annotation')
+    implementation rootProject.ext.dependencies.auto_service
+    annotationProcessor rootProject.ext.dependencies.auto_service
+    implementation rootProject.ext.dependencies.javapoet
+    implementation rootProject.ext.dependencies.auto_common
+    implementation rootProject.ext.dependencies.dagger
+    annotationProcessor rootProject.ext.dependencies.dagger_compiler
+
+}
+
+javadoc {
+    options.encoding = 'UTF-8'
+}
+
+sourceCompatibility = rootProject.ext.java.sourceCompatibility
+targetCompatibility = rootProject.ext.java.targetCompatibility

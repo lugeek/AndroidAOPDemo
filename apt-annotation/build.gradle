@@ -1,0 +1,13 @@
+apply plugin: 'java-library'
+
+dependencies {
+    api rootProject.ext.dependencies.annotations
+    api "javax.inject:javax.inject:1"
+}
+
+javadoc {
+    options.encoding = 'UTF-8'
+}
+
+sourceCompatibility = rootProject.ext.java.sourceCompatibility
+targetCompatibility = rootProject.ext.java.targetCompatibility

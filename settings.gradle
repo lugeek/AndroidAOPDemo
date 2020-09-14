@@ -1,0 +1,4 @@
+include ':apt-compiler'
+include ':apt-annotation'
+include ':app'
+rootProject.name = "AndroidAOPDemo"
