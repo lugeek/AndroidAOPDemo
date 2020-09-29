@@ -1,5 +1,15 @@
 apply plugin: 'com.android.application'
 
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.aspectj:aspectjtools:1.9.6'
+    }
+}
+
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -23,4 +33,43 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation rootProject.ext.dependencies.appcompat
+    implementation 'org.aspectj:aspectjrt:1.9.6'
+}
+
+import org.aspectj.bridge.IMessage
+import org.aspectj.bridge.MessageHandler
+import org.aspectj.tools.ajc.Main
+
+//android.libraryVariants.all for library
+android.applicationVariants.all { variant ->
+    JavaCompile javaCompile = variant.getJavaCompileProvider().get()
+    javaCompile.doLast {
+        String[] args = ["-showWeaveInfo",
+                         "-1.9",
+                         "-inpath", javaCompile.destinationDir.toString(),
+                         "-aspectpath", javaCompile.classpath.asPath,
+                         "-d", javaCompile.destinationDir.toString(),
+                         "-classpath", javaCompile.classpath.asPath,
+                         "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
+        MessageHandler handler = new MessageHandler(true);
+        new Main().run(args, handler)
+
+        def log = project.logger
+        for (IMessage message : handler.getMessages(null, true)) {
+            switch (message.getKind()) {
+                case IMessage.ABORT:
+                case IMessage.ERROR:
+                case IMessage.FAIL:
+                    log.error message.message, message.thrown
+                    break;
+                case IMessage.WARNING:
+                case IMessage.INFO:
+                    log.info message.message, message.thrown
+                    break;
+                case IMessage.DEBUG:
+                    log.debug message.message, message.thrown
+                    break;
+            }
+        }
+    }
 }
