@@ -1,4 +1,5 @@
+include ':aspectj-app'
 include ':apt-compiler'
 include ':apt-annotation'
-include ':app'
+include ':apt-app'
 rootProject.name = "AndroidAOPDemo"

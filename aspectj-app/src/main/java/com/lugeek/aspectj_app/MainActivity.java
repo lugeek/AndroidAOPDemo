@@ -1,8 +1,8 @@
-package com.lugeek.androidaopdemo;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.lugeek.aspectj_app;
 
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 

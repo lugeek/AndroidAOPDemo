@@ -5,12 +5,11 @@ android {
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
+        applicationId "com.lugeek.androidaopdemo.aspectj"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
-
     }
 
     buildTypes {
@@ -24,6 +23,4 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation rootProject.ext.dependencies.appcompat
-    implementation project(':apt-annotation')
-    annotationProcessor project(':apt-compiler')
 }
